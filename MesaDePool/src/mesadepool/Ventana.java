@@ -10,5 +10,6 @@ class Ventana extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
         PanelPrincipal panel = new PanelPrincipal();
+        add(panel);
     }
 }
