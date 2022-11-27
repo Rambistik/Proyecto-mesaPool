@@ -8,16 +8,23 @@ class PanelPrincipal extends JPanel {
 
     public PanelPrincipal() {
         super();
-        setBackground(Color.green);
+        setBackground(Color.gray);
         setSize(800, 600);
         setVisible(true);
     }
+    
 
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.setColor(Color.yellow);
-        g.drawLine(600, 100, 200, 200);
+        g.setColor(new Color(153,102,0));
+        g.fillRect(0, 0, 20, 600);
+        g.fillRect(765, 0, 20, 600);
+        g.fillRect(0, 0, 800, 20);
+        g.fillRect(0, 540, 800, 20);
+        
+        g.setColor(Color.green);
+        g.fillRect(20, 20,750, 520);
     }
 }
 
