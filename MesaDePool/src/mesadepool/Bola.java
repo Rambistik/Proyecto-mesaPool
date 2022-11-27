@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 
 public class Bola {
-    public bola(){
+    public Bola(){
 
     }
     private void generarbola(){
