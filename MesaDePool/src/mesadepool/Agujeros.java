@@ -15,6 +15,6 @@ public class Agujeros {
 
     public void paint(Graphics g) {
         g.setColor(Color.black);
-        g.fillOval((int) x, (int) y, 20, 20);
+        
     }
 }
