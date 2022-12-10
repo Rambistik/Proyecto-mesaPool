@@ -5,9 +5,34 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 
-public class Bola { 
-    public Bola(){
 
+public class Bola{ 
+    
+    public static MesaDePool parent;
+    private double anteriorX, anteriorY;
+    private double x, y;
+    public double Vx, Vy;
+    private double radio;
+    
+    public double getSpeed(){
+        return Vx * Vx + Vy* Vy;
+    }
+    public double getRadio(){
+        return radio;
+    }
+    public double getX(){
+        return x;
+    }
+    public double getY(){
+        return y;
+    }
+
+    public Bola(double x, double y){
+        radio = 10;
+        this.x = x;
+        this.y = y;
+        Vx = 0;
+        Vy = 0;
     }
     private void generarbola(){
     Rectangle bola = new Rectangle();
@@ -16,7 +41,7 @@ public class Bola {
     bola.add(bola);
     }
     
-    public void paint(Graphics g) {
+    public void paint(Graphics g){
         g.setColor(Color.white);
 
         g.setColor(Color.black);
@@ -48,6 +73,64 @@ public class Bola {
         g.setColor(new Color(102,52,0));
         
         g.setColor(new Color(102,52,0));
-    }
         
+        int diametro = (int) (radio * 2);
+        
+        g.fillOval((int) x, (int) y, diametro, diametro);
+    }
+ 
+    public void update(){
+        anteriorX = x;
+        anteriorY = y;
+        Vy *= 0.998;
+        Vx *= 0.998;
+        if (getSpeed() < 0.05){
+            Vx = 0;
+            Vy = 0;
+        }
+        if (y >= 460 && Vy >= 0){
+            Vy *= -0.75;
+        }
+        if (y <= 120 && Vy <= 0){
+            Vy *= -0.75;
+        }
+        if (x >= 832 && Vx >= 0){
+            Vx *= -0.75;
+        }
+        if (x <= 110 && Vx <= 0){
+            Vx *= -0.75;
+        }
+        x += Vx;
+        y += Vy;
+
+    }
+
+    public boolean hitTest(Bola otra){
+        double dx = x - otra.x;
+        double dy = y - otra.y;
+        return Math.sqrt(dx * dx + dy * dy) < 2 * radio;
+    }
+    public void collides(Bola otra){
+        if (hitTest(otra)){
+            x = anteriorX;
+            y = anteriorY;
+            otra.x = otra.anteriorX;
+            otra.y = otra.anteriorY;
+            double dx = otra.x - x;
+            double dy = otra.y - y;
+            double dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist == 0){
+                dx = 0;
+                dy = 0;
+            } else{
+                dx /= dist;
+                dy /= dist;
+            }
+            double scale = (dx * Vx + dy * Vy) - (dx * otra.Vx + dy * otra.Vy);
+            Vx -= dx * scale;
+            Vy -= dy * scale;
+            otra.Vx += dx * scale;
+            otra.Vy += dy * scale;
+        }
+    }
 }
