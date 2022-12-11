@@ -61,7 +61,6 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         Agujeros.add(new Agujeros(101, 467));
         Agujeros.add(new Agujeros(471, 474));
         Agujeros.add(new Agujeros(841, 467));
-        Botones();
 
         BB = new BolaBlanca(225, 290);
         Taco = new PaloDeBillar();
@@ -155,17 +154,6 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         repaint();
     }
     
-    public void Botones() {
-        JButton reiniciar = new JButton("REINICIAR PARTIDA");
-        reiniciar.setBounds(425, 900, 20, 20);
-        JButton masbola = new JButton("+ Bola");
-        masbola.setBounds(525, 900, 20, 20);
-        JButton menosbola = new JButton("- Bola");
-        menosbola.setBounds(625, 900, 20, 20);
-        this.add(reiniciar);
-        this.add(masbola);
-        this.add(menosbola);
-    }
 
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) bufferGraphics;
