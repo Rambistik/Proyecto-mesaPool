@@ -65,13 +65,7 @@ public class Bola{
         Vx = 0;
         Vy = 0;
     }
-    private void generarbola(){
-    Rectangle bola = new Rectangle();
-    bola.width = 32;
-    bola.height = 32;
-    bola.add(bola);
-    }
-    
+   
     /**
      * dibuja las bolas, define su color y diametro.
      * @param g paint.
