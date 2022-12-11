@@ -15,14 +15,15 @@ public class Agujeros {
 
     public void paint(Graphics g) {
         g.setColor(Color.black);
-        g.fillOval(5, 10, 80, 80);
-        g.fillOval(703, 10, 80, 80);
-        g.fillOval(703, 470, 80, 80);
-        g.fillOval(5, 470, 80, 80);
-        g.fillOval(350, 470, 80, 80);
-        g.fillOval(350,10, 80, 80);
-        
-        
-        
+        g.fillOval((int) x, (int) y, 20, 20);
+
     }
+   
+     public boolean collidesWith(Bola b) {
+        double dx = x - b.getX();
+        double dy = y - b.getY();
+        double dist = Math.sqrt(dx * dx + dy * dy);
+        return dist < b.getRadio() * 2;
+    }
+
 }

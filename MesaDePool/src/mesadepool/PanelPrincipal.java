@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
     private Agujeros agu;
     private ArrayList<Bola> Bolas;
-    public BolaBlanca BB;
+    private BolaBlanca BB;
     
     public PanelPrincipal() {
         super();
