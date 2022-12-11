@@ -15,7 +15,14 @@ public class Agujeros {
 
     public void paint(Graphics g) {
         g.setColor(Color.black);
-        g.fillOval(10, 10, 5, 5);
+        g.fillOval(5, 10, 80, 80);
+        g.fillOval(703, 10, 80, 80);
+        g.fillOval(703, 470, 80, 80);
+        g.fillOval(5, 470, 80, 80);
+        g.fillOval(350, 470, 80, 80);
+        g.fillOval(350,10, 80, 80);
+        
+        
         
     }
 }
