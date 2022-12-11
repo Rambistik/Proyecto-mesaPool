@@ -132,7 +132,7 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
                     Bolas.remove(b);
                     i--;
                     puntaje ++;
-                    System.out.println("puntos: "+puntaje);   // si una bola entra al agujero entonces puntaje + 1
+                    System.out.println("puntos: "+ puntaje);   // si una bola entra al agujero entonces puntaje + 1
                 }
             }
         }
@@ -141,6 +141,8 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         }
         for (Agujeros agu : Agujeros) {
             if (agu.collidesWith(BB)) {
+                puntaje --;
+                System.out.println("puntos: "+ puntaje);    // si bola blanca entra a un agujero entonces puntaje -1
                 BB = new BolaBlanca(250, 275);
             }
         }
