@@ -19,13 +19,20 @@ import java.awt.geom.*;
 
         @Override
         public void keyTyped(KeyEvent e) {
-       
-                System.out.println("hola");
-           
+
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case 82 -> System.out.println("hola");
+                case 107 -> {
+                }
+                case 110 -> {
+                }
+                default -> {
+                }
+            }
         }
 
         @Override
