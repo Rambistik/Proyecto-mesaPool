@@ -107,6 +107,7 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         Bolas.add(new Bola(661, 311));
         Bolas.add(new Bola(661, 332));
         Bola.parent = this;
+        Botones();
 
     }
 
