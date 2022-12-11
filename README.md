@@ -11,3 +11,5 @@ Josue Gabriel Ahumada Castro
 
 
 - Intentamos hacer todo con paint pero resulto ser un desafio bastante grande, asi que cambiamos los paint por imagenes estaticas.
+
+- nuestro codigo no tiene problemas al correr pero por alguna razon ya no muestra ninguna pantalla.
