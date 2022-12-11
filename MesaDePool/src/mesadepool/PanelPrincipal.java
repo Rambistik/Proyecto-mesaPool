@@ -6,12 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
     private Agujeros agu;
-
+    private ArrayList<Bola> Bolas;
+    public BolaBlanca BB;
+    
     public PanelPrincipal() {
         super();
         agu = new Agujeros(5,5);
@@ -19,6 +22,32 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         setSize(800, 600);
         setVisible(true);
         Botones();
+    }
+    
+    public void init(){
+        Bolas = new ArrayList<Bola>();
+        BB = new BolaBlanca(x:225, y:290);
+        
+        Bolas.add(new Bola(585, 290));
+        
+        Bolas.add(new Bola(604, 279));
+        Bolas.add(new Bola(604, 301));
+        
+        Bolas.add(new Bola(623, 269));
+        Bolas.add(new Bola(623, 290));
+        Bolas.add(new Bola(623, 311));
+        
+        Bolas.add(new Bola(642, 258));
+        Bolas.add(new Bola(642, 279));
+        Bolas.add(new Bola(642, 301));
+        Bolas.add(new Bola(642, 322));
+        
+        Bolas.add(new Bola(661, 248));
+        Bolas.add(new Bola(661, 269));
+        Bolas.add(new Bola(661, 290));
+        Bolas.add(new Bola(661, 311));
+        Bolas.add(new Bola(661, 332));
+        Bola.parent = this;
     }
     
      public void Botones(){
