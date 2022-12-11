@@ -22,7 +22,7 @@ public class Agujeros {
      public boolean collidesWith(Bola b) {
         double dx = x - b.getX();
         double dy = y - b.getY();
-        double dist = Math.sqrt(dx * dx + dy * dy);
+        double dist = Math.sqrt(dx * dx + dy * dy); //Pitagoras waw!!
         return dist < b.getRadio() * 2;
     }
 
