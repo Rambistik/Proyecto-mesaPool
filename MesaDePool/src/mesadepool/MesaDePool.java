@@ -255,21 +255,19 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         angle -= Math.PI / 2;
         myTransform.rotate(angle);
     }
-
-    @Override
+    
     public void mouseMoved(MouseEvent e) {
     }
-
+    
     public void keyPressed(KeyEvent e) {
     }
-
+    
     public void keyReleased(KeyEvent e) {
     }
 
     public void keyTyped(KeyEvent e) {
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
     }
 }
