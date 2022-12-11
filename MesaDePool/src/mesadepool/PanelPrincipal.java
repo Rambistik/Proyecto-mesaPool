@@ -14,6 +14,7 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
 
     public PanelPrincipal() {
         super();
+        agu = new Agujeros(5,5);
         setBackground(Color.gray);
         setSize(800, 600);
         setVisible(true);
@@ -35,7 +36,8 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
+        super.paint(g);  
+        
         g.setColor(new Color(153,102,0));
         g.fillRect(0, 0, 20, 600);
         g.fillRect(765, 0, 20, 600);
@@ -44,6 +46,7 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         
         g.setColor(Color.green);
         g.fillRect(20, 20,750, 520);
+        agu.paint(g);
         
     }
 
