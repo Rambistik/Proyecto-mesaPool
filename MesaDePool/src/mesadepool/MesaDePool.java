@@ -21,13 +21,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
+class MesaDePool extends JPanel implements MouseListener, ActionListener {
 
     private Agujeros agu;
     private ArrayList<Bola> Bolas;
     private BolaBlanca BB;
 
-    public PanelPrincipal() {
+    public MesaDePool() {
         
        var m = new PanelPrincipal();
         m.setSize(1200, 850);
