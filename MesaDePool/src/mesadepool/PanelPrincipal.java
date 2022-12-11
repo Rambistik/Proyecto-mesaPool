@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
@@ -132,33 +133,57 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
 
     }
 
+    
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void mousePressed(MouseEvent e) {
+        double dx = e.getX() - BB.getX();
+        double dy = e.getY() - BB.getY();
+        powerOffset = Math.sqrt(dx * dx + dy * dy);
+
+    }
+    
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        if (stopped) {
+            BB.Vx = power * Math.cos(angle - Math.PI / 2) * 0.1;
+            BB.Vy = power * Math.sin(angle - Math.PI / 2) * 0.1;
+        }
+        angle = 0;
+        myTransform.setToTranslation(0, 0);
+    }
+    
+    public void mouseDragged(MouseEvent e) {
+        double dx = e.getX() - BB.getX();
+        double dy = e.getY() - BB.getY();
+        power = Math.sqrt(dx * dx + dy * dy) - powerOffset;
+        angle = Math.atan2(dy, dx);
+        myTransform.setToTranslation(power * Math.cos(angle), power * Math.sin(angle));
+        angle -= Math.PI / 2;
+        myTransform.rotate(angle);
+    }
+    
+    public void mouseMoved(MouseEvent e) {
+    }
+
+    public void keyPressed(KeyEvent e) {
+    }
+
+    public void keyReleased(KeyEvent e) {
+    }
+
+    public void keyTyped(KeyEvent e) {
     }
 }
