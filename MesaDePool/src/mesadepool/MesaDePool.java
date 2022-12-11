@@ -18,29 +18,25 @@ import java.util.ArrayList;
 import java.util.Timer;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 class MesaDePool extends JPanel implements MouseListener, ActionListener {
 
-    private Agujeros agu;
-    private ArrayList<Bola> Bolas;
-    private BolaBlanca BB;
 
-    public MesaDePool() {
-        
-       var m = new PanelPrincipal();
+    public static void main(String[] args){ 
+        MesaDePool m = new MesaDePool();
         m.setSize(1200, 850);
         m.init();
         Timer myTimer = new Timer();
         Task myTask = new Task(m);
         myTimer.schedule(myTask, 30, 5);
         m.setVisible(true);
-        setBackground(Color.gray);
-        setSize(800, 600);
-        setVisible(true);
-        Botones();
     }
+    
+    
+    
+    private ArrayList<Bola> Bolas;
+    private BolaBlanca BB;
     private ArrayList<Agujeros> Agujero;
     private PaloDeBillar Taco;
 
@@ -88,6 +84,14 @@ class MesaDePool extends JPanel implements MouseListener, ActionListener {
             img = ImageIO.read(getClass().getResource("/resources/table.jpg"));
         } catch (IOException e) {
         }
+        
+        addMouseListener(this);
+        addMouseMotionListener(this);
+        myTransform = new AffineTransform();
+        myTransform.rotate(angle);
+        myTranslate = new AffineTransform();
+        myStickOffset = new AffineTransform();
+        myStickOffset.setToTranslation(-6, 0);
 
         Bolas.add(new Bola(585, 290));
 
@@ -108,6 +112,7 @@ class MesaDePool extends JPanel implements MouseListener, ActionListener {
         Bolas.add(new Bola(661, 290));
         Bolas.add(new Bola(661, 311));
         Bolas.add(new Bola(661, 332));
+        Bola.parent = this;
 
     }
 
@@ -227,6 +232,16 @@ class MesaDePool extends JPanel implements MouseListener, ActionListener {
         double dy = e.getY() - BB.getY();
         powerOffset = Math.sqrt(dx * dx + dy * dy);
 
+    }
+    
+    public double distance(MouseEvent e, Bola b){
+        int x1 = e.getX();
+        int y1 = e.getY();
+        double x2 = b.getX();
+        double y2 = b.getY();
+        double dx = x1 - x2;
+        double dy = y1 - y2;
+        return Math.sqrt(dx * dx - dy * dy);
     }
 
     @Override
