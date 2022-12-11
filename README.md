@@ -19,3 +19,4 @@ Josue Gabriel Ahumada Castro
 - nuestro codigo no tiene problemas al correr pero por alguna razon ya no muestra ninguna pantalla. (solucionado)
 - al momento de agregar los botones este se mostraba debajo del juego y no dejaba jugar al mismo.
 - el boton que se muestra ademas es del mismo tamaño del panel.
+- cambiamos los botones por acciones de teclado, se detecta el teclado pero aun estamos trabajando en las acciones.
