@@ -5,6 +5,11 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 
+/**
+ * las bolas son las que se utilizaran en el juego.
+ * @author Josue Ahumada, Orlando Aravena, Rodrigo Cadiz
+ */
+
 
 public class Bola{ 
     
@@ -14,18 +19,44 @@ public class Bola{
     public double Vx, Vy;
     private double radio;
     
+    /**
+     * 
+     * @return 
+     */
+    
     public double getSpeed(){
         return Vx * Vx + Vy* Vy;
     }
+    
+    /**
+     * Funcion para obtener el radio.
+     * @return Retorna el radio.
+     */
     public double getRadio(){
         return radio;
     }
+    
+    /**
+     * Funcion para obtener el eje x.
+     * @return  Retrorna el eje x.
+     */
     public double getX(){
         return x;
     }
+    
+    /**
+     * Funcion para retornar el eje y,
+     * @return Retorna el eje y.
+     */
     public double getY(){
         return y;
     }
+    
+    /**
+     * Crea una bola recibiendo 2 parametros, el eje x y el eje y, ademas que define su radio y velocidad inical.
+     * @param x eje.
+     * @param y eje.
+     */
 
     public Bola(double x, double y){
         radio = 10;
@@ -41,6 +72,11 @@ public class Bola{
     bola.add(bola);
     }
     
+    /**
+     * dibuja las bolas, define su color y diametro.
+     * @param g paint.
+     */
+    
     public void paint(Graphics g){
  
         g.setColor(new Color(255,128,0));
@@ -50,6 +86,9 @@ public class Bola{
         g.fillOval((int) x, (int) y, diametro, diametro);
     }
  
+    /**
+     * 
+     */
     public void update(){
         anteriorX = x;
         anteriorY = y;
@@ -75,6 +114,11 @@ public class Bola{
         y += Vy;
 
     }
+    /**
+     * 
+     * @param otra
+     * @return 
+     */
 
     public boolean hitTest(Bola otra){
         double dx = x - otra.x;

@@ -2,7 +2,7 @@ package mesadepool;
 
 /**
  * Agujeros cumple la funcion de las troneras.
- * @author josue ahumada
+ * @author Josue Ahumada, Orlando Aravena, Rodrigo Cadiz
  */ 
 import java.awt.Color;
 import java.awt.Graphics;
