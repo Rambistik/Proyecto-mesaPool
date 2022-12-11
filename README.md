@@ -13,3 +13,4 @@ Josue Gabriel Ahumada Castro
 - Intentamos hacer todo con paint pero resulto ser un desafio bastante grande, asi que cambiamos los paint por imagenes estaticas.
 
 - nuestro codigo no tiene problemas al correr pero por alguna razon ya no muestra ninguna pantalla. (solucionado)
+- al momento de agregar los botones este se mostraba debajo del juego y no dejaba jugar al mismo.
