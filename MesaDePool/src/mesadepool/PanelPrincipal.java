@@ -74,7 +74,7 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         Bolas.add(new Bola(661, 290));
         Bolas.add(new Bola(661, 311));
         Bolas.add(new Bola(661, 332));
-        Bola.parent = this;
+       
     }
 
     public void update() {
@@ -185,5 +185,9 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
     }
 
     public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
     }
 }
