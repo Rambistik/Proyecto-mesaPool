@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 
 public class MesaDePool extends JPanel implements MouseListener, ActionListener, MouseMotionListener {
 
+    private static final long serialVersionUID = 1L;
 
     public static void main(String[] args){ 
         MesaDePool m = new MesaDePool();
@@ -159,17 +160,6 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         repaint();
     }
 
-    public void Botones() {
-        JButton reiniciar = new JButton("REINICIAR PARTIDA");
-        reiniciar.setBounds(425, 500, 100, 40);
-        JButton masbola = new JButton("+ Bola");
-        masbola.setBounds(525, 500, 100, 40);
-        JButton menosbola = new JButton("- Bola");
-        menosbola.setBounds(625, 500, 100, 40);
-        this.add(reiniciar);
-        this.add(masbola);
-        this.add(menosbola);
-    }
 
     @Override
     public void paint(Graphics g) {
@@ -255,6 +245,7 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         myTransform.setToTranslation(0, 0);
     }
 
+    @Override
     public void mouseDragged(MouseEvent e) {
         double dx = e.getX() - BB.getX();
         double dy = e.getY() - BB.getY();
@@ -265,6 +256,7 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         myTransform.rotate(angle);
     }
 
+    @Override
     public void mouseMoved(MouseEvent e) {
     }
 
