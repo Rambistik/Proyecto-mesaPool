@@ -28,6 +28,7 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         Task myTask = new Task(m);
         myTimer.schedule(myTask, 30, 5);
         m.setVisible(true);
+        
     }
     private ArrayList<Bola> Bolas;
     private ArrayList<Agujeros> Agujeros;
@@ -47,7 +48,7 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
     private boolean stopped;
 
     public void init() {
-
+        
         angle = Math.PI / 2.0;
         power = 0.0;
         powerOffset = 0.0;
@@ -60,6 +61,7 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         Agujeros.add(new Agujeros(101, 467));
         Agujeros.add(new Agujeros(471, 474));
         Agujeros.add(new Agujeros(841, 467));
+        Botones();
 
         BB = new BolaBlanca(225, 290);
         Taco = new PaloDeBillar();
@@ -107,7 +109,7 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         Bolas.add(new Bola(661, 311));
         Bolas.add(new Bola(661, 332));
         Bola.parent = this;
-        Botones();
+        
 
     }
 
@@ -155,11 +157,11 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
     
     public void Botones() {
         JButton reiniciar = new JButton("REINICIAR PARTIDA");
-        reiniciar.setBounds(425, 500, 100, 40);
+        reiniciar.setBounds(425, 900, 20, 20);
         JButton masbola = new JButton("+ Bola");
-        masbola.setBounds(525, 500, 100, 40);
+        masbola.setBounds(525, 900, 20, 20);
         JButton menosbola = new JButton("- Bola");
-        menosbola.setBounds(625, 500, 100, 40);
+        menosbola.setBounds(625, 900, 20, 20);
         this.add(reiniciar);
         this.add(masbola);
         this.add(menosbola);
