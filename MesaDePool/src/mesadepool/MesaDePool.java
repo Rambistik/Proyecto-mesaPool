@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -20,7 +21,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-class MesaDePool extends JPanel implements MouseListener, ActionListener {
+public class MesaDePool extends JPanel implements MouseListener, ActionListener, MouseMotionListener {
 
 
     public static void main(String[] args){ 
