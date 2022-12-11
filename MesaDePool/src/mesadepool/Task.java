@@ -5,10 +5,10 @@ import java.util.TimerTask;
 
 public class Task extends TimerTask {
 
-    PanelPrincipal parent;
+    MesaDePool parent;
     Graphics g;
 
-    public Task(PanelPrincipal myParent) {
+    public Task(MesaDePool myParent) {
         parent = myParent;
     }
 
