@@ -1,5 +1,11 @@
 package mesadepool;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -7,11 +13,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.io.IOException;
-import java.awt.*;
+import java.util.ArrayList;
+import java.util.Timer;
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
 
@@ -20,8 +28,14 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
     private BolaBlanca BB;
 
     public PanelPrincipal() {
-        super();
-        agu = new Agujeros(5, 5);
+        
+       var m = new PanelPrincipal();
+        m.setSize(1200, 850);
+        m.init();
+        Timer myTimer = new Timer();
+        Task myTask = new Task(m);
+        myTimer.schedule(myTask, 30, 5);
+        m.setVisible(true);
         setBackground(Color.gray);
         setSize(800, 600);
         setVisible(true);
@@ -153,18 +167,46 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
+        Graphics2D g2d = (Graphics2D) bufferGraphics;
+        AffineTransform temp = g2d.getTransform();
+        AffineTransform temp2 = new AffineTransform();
 
-        g.setColor(new Color(153, 102, 0));
-        g.fillRect(0, 0, 20, 600);
-        g.fillRect(765, 0, 20, 600);
-        g.fillRect(0, 0, 800, 20);
-        g.fillRect(0, 540, 800, 20);
+        int dx1 = 0;
+        int dy1 = 0;
+        int dx2 = 960;
+        int dy2 = 600;
+        int sx1 = 0;
+        int sy1 = 0;
+        int sx2 = 480;
+        int sy2 = 300;
 
-        g.setColor(Color.green);
-        g.fillRect(20, 20, 750, 520);
-        agu.paint(g);
+        g2d.clearRect(0, 0, dim.width, dim.height);
+        g2d.setColor(Color.black);
 
+        g2d.drawImage(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, this);
+        for (Bola b : Bolas) {
+            b.paint(g2d);
+        }
+        BB.paint(g2d);
+
+        temp2.concatenate(myTranslate);                 //junta varios array y los traduce a graphics 2d para transformar el objeto
+        temp2.concatenate(myTransform);
+        temp2.concatenate(myStickOffset);
+        g2d.setTransform(temp2);
+        if (stopped) {
+            Taco.paint(bufferGraphics, this);
+        }
+        g2d.setTransform(temp);
+
+        if (stopped) {
+            bufferGraphics.setColor(Color.black);
+            int dx = (int) (1000 * Math.cos(angle - Math.PI / 2));
+            int dy = (int) (1000 * Math.sin(angle - Math.PI / 2));
+            int size = 10;
+            bufferGraphics.drawLine((int) BB.getX() + size, (int) BB.getY() + size, (int) BB.getX() + dx + size, (int) BB.getY() + dy + size);
+        }
+
+        g.drawImage(offscreen, 0, 0, this);
     }
 
     @Override
