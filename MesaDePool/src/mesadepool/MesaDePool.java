@@ -1,45 +1,36 @@
 package mesadepool;
 
+import java.util.ArrayList;
+import java.awt.*;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.Timer;
+import java.io.IOException;
+import java.awt.image.*;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Timer;
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import java.awt.geom.*;
 
-public class MesaDePool extends JPanel implements MouseListener, ActionListener, MouseMotionListener {
+public class MesaDePool extends JFrame implements MouseListener, MouseMotionListener {
 
     private static final long serialVersionUID = 1L;
 
-    public static void main(String[] args){ 
+    public static void main(String[] args) {
         MesaDePool m = new MesaDePool();
         m.setSize(1200, 850);
-        m.init();
+        m.init();   
         Timer myTimer = new Timer();
         Task myTask = new Task(m);
         myTimer.schedule(myTask, 30, 5);
         m.setVisible(true);
     }
-    
-    
-    
     private ArrayList<Bola> Bolas;
+    private ArrayList<Agujeros> Agujeros;
     private BolaBlanca BB;
-    private ArrayList<Agujeros> Agujero;
     private PaloDeBillar Taco;
 
     private Image img;
@@ -60,18 +51,18 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         power = 0.0;
         powerOffset = 0.0;
         stopped = false;
-        Agujero = new ArrayList<Agujeros>();
         Bolas = new ArrayList<Bola>();
-
-        Agujero.add(new Agujeros(101, 113));
-        Agujero.add(new Agujeros(470, 107));
-        Agujero.add(new Agujeros(841, 112));
-        Agujero.add(new Agujeros(101, 467));
-        Agujero.add(new Agujeros(471, 474));
-        Agujero.add(new Agujeros(841, 467));
+        Agujeros = new ArrayList<Agujeros>();
+        Agujeros.add(new Agujeros(101, 113));
+        Agujeros.add(new Agujeros(470, 107));
+        Agujeros.add(new Agujeros(841, 112));
+        Agujeros.add(new Agujeros(101, 467));
+        Agujeros.add(new Agujeros(471, 474));
+        Agujeros.add(new Agujeros(841, 467));
 
         BB = new BolaBlanca(225, 290);
         Taco = new PaloDeBillar();
+
         dim = new Dimension(1000, 700);
 
         offscreen = new BufferedImage(dim.width, dim.height, BufferedImage.TYPE_INT_RGB);
@@ -86,7 +77,7 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
             img = ImageIO.read(getClass().getResource("/resources/table.jpg"));
         } catch (IOException e) {
         }
-        
+
         addMouseListener(this);
         addMouseMotionListener(this);
         myTransform = new AffineTransform();
@@ -134,7 +125,7 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
                 }
             }
             b.collides(BB);
-            for (Agujeros agu : Agujero) {            //si la bola choca con el agujero es removida
+            for (Agujeros agu : Agujeros) {
                 if (agu.collidesWith(b)) {
                     Bolas.remove(b);
                     i--;
@@ -144,7 +135,7 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         for (Bola b : Bolas) {
             b.update();
         }
-        for (Agujeros agu : Agujero) {                // si la bola blanca choca con un agujero entonces reaparece en el centro
+        for (Agujeros agu : Agujeros) {
             if (agu.collidesWith(BB)) {
                 BB = new BolaBlanca(250, 275);
             }
@@ -154,14 +145,12 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         }
 
         if (stopped) {
-            myTranslate.setToTranslation(BB.getX() + 10, BB.getY() + 10); //para posicionar el palo de billar
+            myTranslate.setToTranslation(BB.getX() + 10, BB.getY() + 10); //codigo para el taco
         }
         BB.update();
         repaint();
     }
 
-
-    @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) bufferGraphics;
         AffineTransform temp = g2d.getTransform();
@@ -185,9 +174,11 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         }
         BB.paint(g2d);
 
-        temp2.concatenate(myTranslate);                 //junta varios array y los traduce a graphics 2d para transformar el objeto
+        
+        temp2.concatenate(myTranslate);
         temp2.concatenate(myTransform);
         temp2.concatenate(myStickOffset);
+       
         g2d.setTransform(temp2);
         if (stopped) {
             Taco.paint(bufferGraphics, this);
@@ -205,27 +196,23 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         g.drawImage(offscreen, 0, 0, this);
     }
 
-    @Override
     public void mouseClicked(MouseEvent e) {
     }
 
-    @Override
     public void mouseEntered(MouseEvent e) {
     }
 
-    @Override
     public void mouseExited(MouseEvent e) {
     }
 
-    @Override
     public void mousePressed(MouseEvent e) {
         double dx = e.getX() - BB.getX();
         double dy = e.getY() - BB.getY();
         powerOffset = Math.sqrt(dx * dx + dy * dy);
 
     }
-    
-    public double distance(MouseEvent e, Bola b){
+
+    public double distance(MouseEvent e, Bola b) {
         int x1 = e.getX();
         int y1 = e.getY();
         double x2 = b.getX();
@@ -235,7 +222,6 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         return Math.sqrt(dx * dx - dy * dy);
     }
 
-    @Override
     public void mouseReleased(MouseEvent e) {
         if (stopped) {
             BB.Vx = power * Math.cos(angle - Math.PI / 2) * 0.1;
@@ -245,7 +231,6 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         myTransform.setToTranslation(0, 0);
     }
 
-    @Override
     public void mouseDragged(MouseEvent e) {
         double dx = e.getX() - BB.getX();
         double dy = e.getY() - BB.getY();
@@ -255,21 +240,17 @@ public class MesaDePool extends JPanel implements MouseListener, ActionListener,
         angle -= Math.PI / 2;
         myTransform.rotate(angle);
     }
-    
-    @Override
+
     public void mouseMoved(MouseEvent e) {
     }
-    
+
     public void keyPressed(KeyEvent e) {
     }
-    
+
     public void keyReleased(KeyEvent e) {
     }
 
     public void keyTyped(KeyEvent e) {
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-    }
 }
