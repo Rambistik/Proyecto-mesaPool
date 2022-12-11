@@ -119,6 +119,20 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         for (Bola b : Bolas) {
             b.update();
         }
+         for (Agujeros agu : Agujero) {                // si la bola blanca choca con un agujero entonces reaparece en el centro
+            if (agu.collidesWith(BB)) {
+                BB = new BolaBlanca(250, 275);
+            }
+        }
+        if (BB.getSpeed() > 0.001) { 
+            stopped = false;
+        }
+
+        if (stopped) {
+            myTranslate.setToTranslation(BB.getX() + 10, BB.getY() + 10); //para posicionar el palo de billar
+        }
+        BB.update();
+        repaint();
     }
 
     public void Botones() {
