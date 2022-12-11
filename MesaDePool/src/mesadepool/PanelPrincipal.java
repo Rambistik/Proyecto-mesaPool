@@ -1,10 +1,6 @@
 package mesadepool;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.RenderingHints;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -12,11 +8,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.io.IOException;
+import java.awt.*;
+
 
 class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
 
@@ -57,7 +54,7 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         Agujero = new ArrayList<Agujeros>();
         Bolas = new ArrayList<Bola>();
         BB = new BolaBlanca(225, 290);
-        
+
         offscreen = new BufferedImage(dim.width, dim.height, BufferedImage.TYPE_INT_RGB);
         bufferGraphics = offscreen.getGraphics();
         Graphics2D g2 = (Graphics2D) bufferGraphics;
@@ -90,7 +87,7 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         Bolas.add(new Bola(661, 290));
         Bolas.add(new Bola(661, 311));
         Bolas.add(new Bola(661, 332));
-       
+
     }
 
     public void update() {
@@ -119,12 +116,12 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         for (Bola b : Bolas) {
             b.update();
         }
-         for (Agujeros agu : Agujero) {                // si la bola blanca choca con un agujero entonces reaparece en el centro
+        for (Agujeros agu : Agujero) {                // si la bola blanca choca con un agujero entonces reaparece en el centro
             if (agu.collidesWith(BB)) {
                 BB = new BolaBlanca(250, 275);
             }
         }
-        if (BB.getSpeed() > 0.001) { 
+        if (BB.getSpeed() > 0.001) {
             stopped = false;
         }
 
@@ -163,7 +160,6 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
 
     }
 
-    
     @Override
     public void mouseClicked(MouseEvent e) {
     }
@@ -183,7 +179,6 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         powerOffset = Math.sqrt(dx * dx + dy * dy);
 
     }
-    
 
     @Override
     public void mouseReleased(MouseEvent e) {
@@ -194,7 +189,7 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         angle = 0;
         myTransform.setToTranslation(0, 0);
     }
-    
+
     public void mouseDragged(MouseEvent e) {
         double dx = e.getX() - BB.getX();
         double dy = e.getY() - BB.getY();
@@ -204,7 +199,7 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         angle -= Math.PI / 2;
         myTransform.rotate(angle);
     }
-    
+
     public void mouseMoved(MouseEvent e) {
     }
 
