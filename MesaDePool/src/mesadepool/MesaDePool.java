@@ -15,6 +15,25 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.*;
 
+ class keyEvent implements KeyListener{
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+       
+                System.out.println("hola");
+           
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
+        
+    }
+
 public class MesaDePool extends JFrame implements MouseListener, MouseMotionListener {
 
     private static final long serialVersionUID = 1L;
@@ -27,6 +46,7 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         Task myTask = new Task(m);
         myTimer.schedule(myTask, 30, 5);
         m.setVisible(true);
+        m.addKeyListener(new keyEvent());
 
     }
     private ArrayList<Bola> Bolas;
@@ -246,23 +266,8 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         myTransform.rotate(angle);
     }
 
+    @Override
     public void mouseMoved(MouseEvent e) {
-    }
-
-    public void keyPressed(KeyEvent e) {
-    int keyCode = e.getKeyCode();
-    if (keyCode == KeyEvent.VK_R) {
-      
-    } 
-    
-    }
-
-    public void keyReleased(KeyEvent e) {
-        
-    
-    }
-
-    public void keyTyped(KeyEvent e) {
     }
 
 }
