@@ -1,6 +1,5 @@
 package mesadepool;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -13,7 +12,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.IOException;
 import java.awt.*;
-
 
 class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
 
@@ -50,10 +48,19 @@ class PanelPrincipal extends JPanel implements MouseListener, ActionListener {
         power = 0.0;
         powerOffset = 0.0;
         stopped = false;
-
         Agujero = new ArrayList<Agujeros>();
         Bolas = new ArrayList<Bola>();
+
+        Agujero.add(new Agujeros(101, 113));
+        Agujero.add(new Agujeros(470, 107));
+        Agujero.add(new Agujeros(841, 112));
+        Agujero.add(new Agujeros(101, 467));
+        Agujero.add(new Agujeros(471, 474));
+        Agujero.add(new Agujeros(841, 467));
+
         BB = new BolaBlanca(225, 290);
+        Taco = new PaloDeBillar();
+        dim = new Dimension(1000, 700);
 
         offscreen = new BufferedImage(dim.width, dim.height, BufferedImage.TYPE_INT_RGB);
         bufferGraphics = offscreen.getGraphics();
