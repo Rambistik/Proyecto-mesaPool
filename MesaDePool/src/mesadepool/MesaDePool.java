@@ -250,9 +250,16 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
     }
 
     public void keyPressed(KeyEvent e) {
+    int keyCode = e.getKeyCode();
+    if (keyCode == KeyEvent.VK_R) {
+      
+    } 
+    
     }
 
     public void keyReleased(KeyEvent e) {
+        
+    
     }
 
     public void keyTyped(KeyEvent e) {
