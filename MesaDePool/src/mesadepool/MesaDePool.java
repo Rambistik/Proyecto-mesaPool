@@ -18,17 +18,16 @@ import java.awt.geom.*;
 public class MesaDePool extends JFrame implements MouseListener, MouseMotionListener {
 
     private static final long serialVersionUID = 1L;
-    
 
     public static void main(String[] args) {
         MesaDePool m = new MesaDePool();
         m.setSize(1200, 850);
-        m.init();   
+        m.init();
         Timer myTimer = new Timer();
         Task myTask = new Task(m);
         myTimer.schedule(myTask, 30, 5);
         m.setVisible(true);
-        
+
     }
     private ArrayList<Bola> Bolas;
     private ArrayList<Agujeros> Agujeros;
@@ -46,9 +45,10 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
     private AffineTransform myStickOffset;
     private double powerOffset, power, angle;
     private boolean stopped;
+    private int puntaje = 0;
 
     public void init() {
-        
+
         angle = Math.PI / 2.0;
         power = 0.0;
         powerOffset = 0.0;
@@ -108,7 +108,6 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         Bolas.add(new Bola(661, 311));
         Bolas.add(new Bola(661, 332));
         Bola.parent = this;
-        
 
     }
 
@@ -132,6 +131,8 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
                 if (agu.collidesWith(b)) {
                     Bolas.remove(b);
                     i--;
+                    puntaje ++;
+                    System.out.println("puntos: "+puntaje);   // si una bola entra al agujero entonces puntaje + 1
                 }
             }
         }
@@ -153,7 +154,6 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         BB.update();
         repaint();
     }
-    
 
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) bufferGraphics;
@@ -178,11 +178,10 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         }
         BB.paint(g2d);
 
-        
         temp2.concatenate(myTranslate);
         temp2.concatenate(myTransform);
         temp2.concatenate(myStickOffset);
-       
+
         g2d.setTransform(temp2);
         if (stopped) {
             Taco.paint(bufferGraphics, this);
