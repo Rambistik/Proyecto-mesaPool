@@ -1,5 +1,5 @@
 # Proyecto-mesaPool
-
+- grupo 23 / tema 6.
 Orlando Enrique Aravena Venegas/
 Rodrigo Sebastian Cadiz Araya/
 Josue Gabriel Ahumada Castro
@@ -20,3 +20,10 @@ Josue Gabriel Ahumada Castro
 - al momento de agregar los botones este se mostraba debajo del juego y no dejaba jugar al mismo.
 - el boton que se muestra ademas es del mismo tamaño del panel.
 - cambiamos los botones por acciones de teclado, se detecta el teclado pero aun estamos trabajando en las acciones.
+
+
+#Lista de cosas que no supimos hacer o faltaron
+- botones funcionales y que se mostraran en pantalla.
+- reiniciar el juego.
+- generar las bolas de manera aleatoria.
+- puntaje (esta incompleto ya que si se muestra en consola pero no en pantalla).
