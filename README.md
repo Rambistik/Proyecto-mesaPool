@@ -25,3 +25,6 @@
 - reiniciar el juego.
 - generar las bolas de manera aleatoria.
 - puntaje (esta incompleto ya que si se muestra en consola pero no en pantalla).
+
+# Lista de patrones
+-
