@@ -1,8 +1,6 @@
 # Proyecto-mesaPool
 - grupo 23 / tema 6.
-Orlando Enrique Aravena Venegas/
-Rodrigo Sebastian Cadiz Araya/
-Josue Gabriel Ahumada Castro
+- Orlando Enrique Aravena Venegas/ Rodrigo Sebastian Cadiz Araya/ Josue Gabriel Ahumada Castro
 
 # Enunciado del proyecto
 
@@ -22,7 +20,7 @@ Josue Gabriel Ahumada Castro
 - cambiamos los botones por acciones de teclado, se detecta el teclado pero aun estamos trabajando en las acciones.
 
 
-#Lista de cosas que no supimos hacer o faltaron
+# Lista de cosas que no supimos hacer o faltaron
 - botones funcionales y que se mostraran en pantalla.
 - reiniciar el juego.
 - generar las bolas de manera aleatoria.
