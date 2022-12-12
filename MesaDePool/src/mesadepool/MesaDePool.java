@@ -15,39 +15,13 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.*;
 
- class keyEvent implements KeyListener{
-
-        @Override
-        public void keyTyped(KeyEvent e) {
-
-        }
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-            switch (e.getKeyCode()) {
-                case 82 -> System.out.println("hola");
-                case 107 -> {
-                }
-                case 110 -> {
-                }
-                default -> {
-                }
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-        }
-        
-    }
-
 public class MesaDePool extends JFrame implements MouseListener, MouseMotionListener {
 
     private static final long serialVersionUID = 1L;
 
     public static void main(String[] args) {
         MesaDePool m = new MesaDePool();
-        m.setSize(1200, 850);
+        m.setSize(950, 600);
         m.init();
         Timer myTimer = new Timer();
         Task myTask = new Task(m);
@@ -158,8 +132,8 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
                 if (agu.collidesWith(b)) {
                     Bolas.remove(b);
                     i--;
-                    puntaje ++;
-                    System.out.println("puntos: "+ puntaje);   // si una bola entra al agujero entonces puntaje + 1
+                    puntaje++;
+                    System.out.println("puntos: " + puntaje);   // si una bola entra al agujero entonces puntaje + 1
                 }
             }
         }
@@ -168,8 +142,8 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         }
         for (Agujeros agu : Agujeros) {
             if (agu.collidesWith(BB)) {
-                puntaje --;
-                System.out.println("puntos: "+ puntaje);    // si bola blanca entra a un agujero entonces puntaje -1
+                puntaje--;
+                System.out.println("puntos: " + puntaje);    // si bola blanca entra a un agujero entonces puntaje -1
                 BB = new BolaBlanca(250, 275);
             }
         }
@@ -275,6 +249,35 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
 
     @Override
     public void mouseMoved(MouseEvent e) {
+    }
+
+}
+
+class keyEvent implements KeyListener {
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case 82 ->
+                System.out.println("hola");
+            case 107 -> {
+                System.out.println("hola2");
+            }
+            case 110 -> {
+                System.out.println("hola3");
+            }
+            default -> {
+            }
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
     }
 
 }
