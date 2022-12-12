@@ -15,6 +15,11 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.*;
 
+/**
+ * Clase principal 
+ * @author Josue Ahumada, Orlando Aravena, Rodrigo Cadiz
+ */
+
 public class MesaDePool extends JFrame implements MouseListener, MouseMotionListener {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +53,9 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
     private boolean stopped;
     private int puntaje = 0;
 
+    /**
+     *seter 
+     */
     public void init() {
 
         angle = Math.PI / 2.0;
@@ -111,6 +119,9 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         Bola.parent = this;
 
     }
+    /**
+     * Chequea el estado de las bolas para despues asignar el puntaje y una vez que esten detenidas, poder volver a golpear
+     */
 
     public void update() {
         if (Bolas == null) {
@@ -157,6 +168,10 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         BB.update();
         repaint();
     }
+    /**
+     * pinta las posiciones de los agujeros
+     * @param g 
+     */
 
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) bufferGraphics;
@@ -211,7 +226,7 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
     public void mouseExited(MouseEvent e) {
     }
 
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {                                    //distancia entre el mouse y la bola blanca
         double dx = e.getX() - BB.getX();
         double dy = e.getY() - BB.getY();
         powerOffset = Math.sqrt(dx * dx + dy * dy);
@@ -228,7 +243,7 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         return Math.sqrt(dx * dx - dy * dy);
     }
 
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e) {                                   //calcula los componentes horizontales y verticales para la velocidad de bola blanca                    
         if (stopped) {
             BB.Vx = power * Math.cos(angle - Math.PI / 2) * 0.1;
             BB.Vy = power * Math.sin(angle - Math.PI / 2) * 0.1;
@@ -237,7 +252,7 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
         myTransform.setToTranslation(0, 0);
     }
 
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(MouseEvent e) {                                    // calcula la potencia en base a que tanto aleja el mouse, luego actualiza la posicion y orientacion del objeto
         double dx = e.getX() - BB.getX();
         double dy = e.getY() - BB.getY();
         power = Math.sqrt(dx * dx + dy * dy) - powerOffset;
@@ -252,6 +267,12 @@ public class MesaDePool extends JFrame implements MouseListener, MouseMotionList
     }
 
 }
+/**
+ * Aqui debia ir la asignacion de botones
+ * R = reiniciar partida
+ * + = nueva bola en posicion aleatoria
+ * - = quitar la ultima bola añadida
+ */
 
 class keyEvent implements KeyListener {
 

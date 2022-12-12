@@ -81,7 +81,7 @@ public class Bola{
     }
  
     /**
-     * 
+     * Actualiza la velocidad de las bolas
      */
     public void update(){
         anteriorX = x;
@@ -109,7 +109,8 @@ public class Bola{
 
     }
     /**
-     * 
+     * Al colisionar una bola con otra, la que es impactada toma el momentum de la primera
+     * esta velocidad se calcula con la hipotenusa
      * @param otra
      * @return 
      */
